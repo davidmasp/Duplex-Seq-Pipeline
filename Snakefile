@@ -1699,7 +1699,7 @@ rule makeSummaryCSV:
     output:
         outSum = f"{config['samples']}.summary.csv"
     conda:
-        "envs/DS_env_full.yaml"
+        "envs/DS_env_jupyter.yaml"
     shell:
         """
         python {params.basePath}/scripts/retrieveSummary.py \
@@ -2089,8 +2089,10 @@ import numpy as np
                         )
             elif "#" not in line:
                 if "OVERALL" in line:
+                    print(line)
+                    valssss = ' | '.join([x for x in line.strip().split(',')[2:]])
                     cmTable2.append(
-                        f"| {' | '.join([x for x in line.strip().split(',')[2:]])} |  \n"
+                        f"| {valssss} |  \n"
                         )
         cmFile.close()
         
@@ -2108,8 +2110,9 @@ import numpy as np
                       "| ---- | ----- | --------- | ------- | ---- | --- | ---- | ------ | --- |  \n"]
         for line in depthFile:
             if "#" not in line:
+                value_depth_table = ' | '.join([x for x in line.strip().split(',')])
                 depthTable.append(
-                    f"| {' | '.join([x for x in line.strip().split(',')])} |  \n"
+                    f"| {value_depth_table} |  \n"
                     )
         depthFile.close()
         myCells.append(nbf.v4.new_markdown_cell(
@@ -2126,7 +2129,7 @@ rule compileReport:
     output:
         "{runPath}/Final/{sample}.report.html"
     conda:
-        "envs/DS_env_full.yaml"
+        "envs/DS_env_jupyter.yaml"
     log:
         "{runPath}/logs/{sample}_compileReport.log"
     shell:

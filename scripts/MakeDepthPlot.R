@@ -87,7 +87,7 @@ addZeros <- function(inData) {
 #    output:
 #        "{runPath}/Stats/plots/{sample}.{sampType}.targetCoverage.png"
 
-myBed <- read_table2(inBed, col_names = FALSE)
+myBed <- read_table(inBed, col_names = FALSE)
 myFName = paste("Stats/data/",inSampName, ".depth.txt", sep="")
 pre_depth <- read_delim(myFName,
                     "\t", escape_double = FALSE, trim_ws = TRUE, 

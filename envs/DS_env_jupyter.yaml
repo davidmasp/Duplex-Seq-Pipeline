@@ -1,0 +1,15 @@
+name: DS_jupyter
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3.10.*
+  - snakemake
+  - pandas
+  - numpy
+  - matplotlib
+  - regex
+  - biopython
+  - jupyterlab=4.2.0
+  - nbconvert
+  - pandoc
